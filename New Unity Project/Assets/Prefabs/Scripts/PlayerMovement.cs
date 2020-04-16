@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
             myRB.velocity = new Vector2(0f, jumpForce);
         }
-        
+
      }
      void OnCollisionEnter2D(Collision2D collision)
     {
