@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
   public float moveSpeed;
   private float moveSpeedStore;
@@ -59,6 +59,13 @@ stoppedJumping = true;
     // Update is called once per frame
     void Update()
     {
+
+        //Multipalyer
+        if (!isLocalPlayer)
+        {
+            return;
+        }
+
 //grounded= Physics2D.IsTouchingLayers(myCollider,whatIsGround);
 
 grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius,whatIsGround);
@@ -123,4 +130,10 @@ myAnimator.SetBool("Grounded",grounded);
       }
 
     }
+
+    public override void OnStartLocalPlayer()
+    {
+        GetComponent<MeshRenderer>().material.color = Color.cyan;
+    }
+
 }
